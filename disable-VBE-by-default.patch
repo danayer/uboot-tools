@@ -1,0 +1,27 @@
+From 02513d9ecc38d11ffc051ed59529e11f82164785 Mon Sep 17 00:00:00 2001
+From: Peter Robinson <pbrobinson@gmail.com>
+Date: Fri, 18 Aug 2023 13:28:05 +0100
+Subject: [PATCH] disable VBE by default
+ 
+Fedora doesn't support the VBE boot method, disable it
+to reduce size and remove a possible boot attack vector.
+ 
+Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+---
+ boot/Kconfig | 1 -
+ 1 file changed, 1 deletion(-)
+ 
+diff --git a/boot/Kconfig b/boot/Kconfig
+index e8fb03b8016..467b09e2350 100644
+--- a/boot/Kconfig
++++ b/boot/Kconfig
+@@ -526,7 +526,6 @@ config BOOTMETH_EFILOADER
+ config BOOTMETH_VBE
+ 	bool "Bootdev support for Verified Boot for Embedded"
+ 	depends on FIT
+-	default y
+ 	select BOOTMETH_GLOBAL
+ 	select EVENT
+ 	help
+-- 
+2.41.0
